@@ -55,12 +55,14 @@ public abstract class Person {
         this.partner = partner;
     }
 
-    public boolean isDevorced() {
+    public boolean getIsDevorced() {
         return isDevorced;
     }
 
-    public void setDevorced(boolean devorced) {
-        isDevorced = devorced;
+    public void setIsDevorced(boolean isDevorced) {
+        this.isDevorced = isDevorced;
     }
+
+
 }
 

@@ -17,40 +17,26 @@ public class ManTests {
         Assert.assertTrue(man.isRetired());
     }
 
-    @Test(description = "Check if a man is married")
-    public void testRegisterPartnershipYes(){
-        man = new Man("John", "LastName", 60, "LastName", false);
+    @Test(description = "Check if partner is changed")
+    public void testRegisterPartnershipChanges(){
+        man = new Man("John", "LastName", 60, null, false);
+        man.registerPartnership();
         Assert.assertEquals(man.getLastName(), man.getPartner());
     }
 
-    @Test(description = "Check if a man is not married")
-    public void testRegisterPartnershipNo(){
-        man = new Man("Bob", "Last", 31, "Name", false);
+    @Test(description = "Check if a partner is changed and isDivorced is changed")
+    public void testDeregisterPartnershipChanges(){
+        man = new Man("John", "LastName", 60, "none", false);
+        man.deregisterPartnership();
         Assert.assertNotEquals(man.getLastName(), man.getPartner());
+        Assert.assertTrue(man.getIsDevorced());
     }
 
-    @Test(description = "Check if a man doesn't have a partner (register partnership)")
-    public void testRegisterPartnershipNotMarried(){
-        man = new Man("John", "Yong", 60, null, false);
-        Assert.assertNull(man.getPartner());
-    }
-
-    @Test(description = "Check if a man is divorced")
-    public void testDeregisterPartnershipYes(){
-        man = new Man("John", "LastName", 60, "LastName", false);
-        Assert.assertFalse(man.isDevorced());
-    }
-
-    @Test(description = "Check if a man is not divorced")
-    public void testDeregisterPartnershipNo(){
-        man = new Man("Bob", "Yong", 60, null, true);
-        Assert.assertTrue(man.isDevorced());
-    }
-
-    @Test(description = "Check if a man doesn't have a partner (deregister partnership)")
-    public void testDeregisterPartnershipNotMarried(){
-        man = new Man("Bob", "Yong", 60, null, false);
-        Assert.assertNull(man.getPartner());
+    @Test(description = "Check if a partner is not changed")
+    public void testDeregisterPartnershipNotChanges(){
+        man = new Man("John", "LastName", 60, null, false);
+        man.deregisterPartnership();
+        Assert.assertEquals(man.getPartner(), null);
     }
 }
 

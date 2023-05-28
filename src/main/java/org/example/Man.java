@@ -15,20 +15,17 @@ public class Man extends Person{
         return false;
     }
     public void registerPartnership(){
-        if (getPartner()==null) {
-            System.out.println("Not married");
-            return;
-        }
         setPartner(getLastName());
         System.out.println("This man is married to "+getPartner());
     }
 
     public void deregisterPartnership(){
-        if (getPartner()==null){
+        if (getPartner() == null){
             return;
-        }else if (isDevorced()){
-            System.out.println("Has devorced with "+getPartner());
+        }else if (getPartner()!= null){
+            setPartner("none");
+            setIsDevorced(true);
+            System.out.println("Partner is "+getPartner()+" isDivorced status is "+getIsDevorced());
         }
-        System.out.println("Has a happy marriage");
     }
 }
