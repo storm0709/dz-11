@@ -17,10 +17,11 @@ public class WomanTests {
         Assert.assertTrue(woman.isRetired());
     }
 
-    @Test(description = "Check if partner is changed")
+    @Test(description = "Check if LastName is changed and partner is changed")
     public void testRegisterPartnershipChanges(){
         woman = new Woman("Bella", "LastName", 60, null, false,"LastNameOriginal");
-        woman.registerPartnership();
+        woman.registerPartnership("Brown");
+        Assert.assertEquals(woman.getLastName(),"Brown");
         Assert.assertEquals(woman.getLastName(), woman.getPartner());
     }
 
@@ -41,17 +42,16 @@ public class WomanTests {
     }
 
     @Test(description = "Check if getLastNameOriginal() works")
-    public void testGetLastNameOriginal(){
-        woman = new Woman("Lisa", "Yong", 60, null, false, "Yong");
-        String checkGetter = woman.getLastNameOriginal();
-        Assert.assertEquals(checkGetter, woman.getLastNameOriginal());
+    public void testLastNameOriginal(){
+         woman = new Woman("Lisa", "Yong", 60, null, false, "Yong");
+         woman.setLastNameOriginal("Original");
+         Assert.assertEquals(woman.getLastNameOriginal(), "Original", "The original name is not the same");
     }
 
-    @Test(description = "Check if a woman has getLastNameOriginal() not NULL")
+    @Test(description = "Check if a woman has LastNameOriginal not NULL")
     public void testGetLastNameOriginalNotNull(){
         woman = new Woman("Lisa", "Yong", 60, null, false, "Yong");
-        String checkGetter = null;
-        Assert.assertNotEquals(woman.getLastNameOriginal(),checkGetter);
+        Assert.assertNotEquals(woman.getLastNameOriginal(),null, "LastNameOriginal is null");
     }
 
     @Test(description = "Check if a woman has setLastNameOriginal()")
@@ -60,14 +60,6 @@ public class WomanTests {
         String lastName = "";
         woman.setLastNameOriginal(lastName);
         Assert.assertEquals(woman.getLastNameOriginal(), lastName);
-    }
-
-    @Test(description = "Check if setLastNameOriginal() is not set to NULL")
-    public void testSetLastNameOriginalNotNull(){
-        woman = new Woman("Lisa", "Yong", 60, null, false, "Yong");
-        String lastName = "";
-        woman.setLastNameOriginal(lastName);
-        Assert.assertNotEquals(woman.getLastNameOriginal(), null);
     }
 
 }

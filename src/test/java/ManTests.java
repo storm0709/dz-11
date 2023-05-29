@@ -20,19 +20,19 @@ public class ManTests {
     @Test(description = "Check if partner is changed")
     public void testRegisterPartnershipChanges(){
         man = new Man("John", "LastName", 60, null, false);
-        man.registerPartnership();
+        man.registerPartnership("LastName");
         Assert.assertEquals(man.getLastName(), man.getPartner());
     }
 
-    @Test(description = "Check if a partner is changed and isDivorced is changed")
+    @Test(description = "Check if a partner is changed and isDivorced is changed when had one before")
     public void testDeregisterPartnershipChanges(){
-        man = new Man("John", "LastName", 60, "none", false);
+        man = new Man("John", "LastName", 60, "LastName", false);
         man.deregisterPartnership();
         Assert.assertNotEquals(man.getLastName(), man.getPartner());
-        Assert.assertTrue(man.getIsDevorced());
+        Assert.assertTrue(man.getIsDevorced(), "The field 'isDivorced' set to false");
     }
 
-    @Test(description = "Check if a partner is not changed")
+    @Test(description = "Check if a partner is not changed when didn't have one before")
     public void testDeregisterPartnershipNotChanges(){
         man = new Man("John", "LastName", 60, null, false);
         man.deregisterPartnership();
